@@ -22,10 +22,10 @@ exports.VerifyToken = async (req, res, next) => {
     if (!token) {
         return next(createError(404, "You are not authenticated"));
     }
-
+ 
     // Verify the token
     try {
-        const decoded = jwt.verify(token, "f84hf4h4hfhfhfwei9393=ij");
+        const decoded = jwt.verify(token, process.env.SECRET);
         req.user = decoded;
         next();
     } catch (error) {
